@@ -6,7 +6,6 @@ const app = express()
 const PORT = 4040
 
 // hbs
-
 app.engine('hbs', handlebars.engine({
   extname: '.hbs',
   defaultlayout: 'main.hbs',
