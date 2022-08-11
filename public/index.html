@@ -19,18 +19,18 @@
                 <h1>CentroGaming</h1>
             </div>            
         </div>
-        <nav>
+        <!-- <nav>
             <ul>
                 <li><a href="/index.html">Agregar</a></li>
                 <li><a href="/api/games">Ver</a></li>
             </ul>
-        </nav>
+        </nav> -->
     </header>
     <main>
         <div class="container">
             <div class="form">
                 <h1>Nuevo Juego</h1>
-                <form action="/api/games" method="post">
+                <form onsubmit="return addGame()" method="post">
                     <div>
                         <label for="name">Nombre:</label>
                         <input type="text" name="name" id="name">
@@ -67,8 +67,9 @@
                     <div>
                         <input type="submit" value="Enviar">
                     </div>
-                </form>
-            </div>
+                </form>                
+            </div>     
+            <div id="listaJuegos"></div>       
         </div>
     </main>
     <footer>

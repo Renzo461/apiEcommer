@@ -5,7 +5,8 @@ const router = express.Router()
 // readGames
 router.get('/', (req, res) => {
   const games = readGames()
-  res.render('game', { juego: games })
+  res.send(games)
+  // res.render('game', { juego: games })
 })
 
 // readGameById
@@ -13,7 +14,8 @@ router.get('/:id', (req, res) => {
   const id = +req.params.id
   try {
     const game = readGameById(id)
-    res.render('game', { juego: [game] })
+    res.send(game)
+    // res.render('game', { juego: [game] })
   } catch (e) {
     res.status(404).render('error', { message: e.message })
   }
@@ -21,13 +23,14 @@ router.get('/:id', (req, res) => {
 
 // createGame
 router.post('/', (req, res) => {
-  console.log(req.body)
   try {
     const data = newGameEntry(req.body)
-    createGame(data)
-    res.redirect('/index.html')
+    const newGame = createGame(data)
+    res.send(newGame)
+    // res.redirect('/index.html')
   } catch (e) {
-    res.status(404).render('error', { message: e.message })
+    res.status(404).send({ message: e.message })
+    // res.status(404).render('error', { message: e.message })
   }
 })
 
@@ -51,7 +54,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const id = +req.params.id
   try {
-    deleteGame(+id)
+    deleteGame(id)
     res.send({ statusDelete: 'ok' })
   } catch (e) {
     res.status(404).send(e.message)

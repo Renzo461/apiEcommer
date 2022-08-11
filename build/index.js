@@ -1,5 +1,6 @@
 const express = require('express')
 const games = require('./routes/games')
+const cart = require('./routes/cart')
 const handlebars = require('express-handlebars')
 
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use('/api/games', games)
+app.use('/api/cart', cart)
 app.listen(PORT, () => {
   console.log(`Server runnig at port ${PORT}`)
 })
